@@ -6,7 +6,7 @@ class CreateEntries < ActiveRecord::Migration[7.0]
       t.date "occurred_on"
       t.integer "place_id"
       t.integer "user_id"
-
+      t.string "image"
       t.timestamps
     end
   end

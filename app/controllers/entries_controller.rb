@@ -1,6 +1,7 @@
 class EntriesController < ApplicationController
 
   def new
+    @entry = Entry.find_by({ "id" => session["user_id"] })
   end
 
   def create
@@ -8,6 +9,7 @@ class EntriesController < ApplicationController
     if @user != nil
       @entry = Entry.new
       @entry["title"] = params["title"]
+      @entry.uploaded_image.attach(params["image"])
       @entry["user_id"] = @current_user["id"]
       @entry["description"] = params["description"]
       @entry["occurred_on"] = params["occurred_on"]

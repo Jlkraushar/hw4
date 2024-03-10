@@ -2,7 +2,6 @@ class PlacesController < ApplicationController
 
   def index
     @places = Place.all
-    @current_user = User.find_by({ "id" => session["user_id"] })
   end
 
   def show
@@ -14,10 +13,15 @@ class PlacesController < ApplicationController
   end
 
   def create
-    @place = Place.new
-    @place["name"] = params["name"]
-    @place.save
-    redirect_to "/places"
+    @user = User.find_by({ "id" => session["user_id"] })
+    if @user != nil
+      @place = Place.new
+      @place["name"] = params["name"]
+      @place.save
+    else
+      flash["notice"] = "Login first."
+    end
+      redirect_to "/places"
   end
 
 end

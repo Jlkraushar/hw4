@@ -1,14 +1,15 @@
-<h1>Signup</h1>
+<h1>Sign Up</h1>
 
-<%= form_with :url => "/users" do |form| %>
-  <p>
+<form action="/users" method="post">
+  <div class="mb-3">
+    <label for="email_input" class="form-label">Email</label>
+    <input type="text" name="email" id="email_input" class="form-control">
+  </div>
 
-    <%= form.label "email" %>
-    <%= form.text_field "email" %>
-    <%= form.label "password" %>
-    <%= form.password_field "password" %>
-  </p>
-  <p>
-    <%= form.submit "Signup" %>
-  </p>
-<% end %>
+  <div class="mb-3">
+    <label for="password_input" class="form-label">Password</label>
+    <input type="password" name="password" id="password_input" class="form-control">
+  </div>
+
+  <button class="btn btn-primary">Signup</button>
+</form>
